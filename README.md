@@ -10,4 +10,5 @@ for pn532 uart
 
 for  ina219 
 
-        sudo pip3 install pi-ina219
+        sudo pip3 install ina219
+

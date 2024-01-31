@@ -5,7 +5,9 @@ def on_connect(tag):
     print(f'UID: {uid}')
     return True  # Set the flag to exit the loop
 
-clf = nfc.ContactlessFrontend('tty:S0')  # Use 'tty:AMA0' or other port based on your configuration
+clf = nfc.ContactlessFrontend('tty:AMA0')  # Use 'tty:AMA0' or other port based on your configuration
+#bluetooth need to be disconnected using following command in config.txt
+# dtoverlay=disable-bt
 
 try:
     card_read = False  # Flag to indicate whether a card has been read

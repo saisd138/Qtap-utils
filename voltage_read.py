@@ -28,10 +28,14 @@ def get_battery_info():
     time.sleep(1)
 
     # Read the voltage from the INA219 sensor
-    voltage = ina.voltage()
+    voltage = ina.voltage()+0.15
 
     # Read the current from the INA219 sensor
     current = ina.current()  # This value is in Amperes
+
+    # Define the minimum and maximum voltage for the battery
+    min_voltage = 3.0
+    max_voltage = 4.1
 
     # Calculate the battery percentage
     battery_percentage = ((voltage - min_voltage) / (max_voltage - min_voltage)) * 100

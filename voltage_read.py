@@ -36,10 +36,14 @@ def get_battery_info():
     # Define the minimum and maximum voltage for the battery
     min_voltage = 3.0
     max_voltage = 4.1
+    #for 2s battery config
+    # min_voltage = 6
+    # max_voltage = 8.2
 
     # Calculate the battery percentage
     battery_percentage = ((voltage - min_voltage) / (max_voltage - min_voltage)) * 100
-
+    if(battery_percentage > 100):battery_percentage = 100
+    if(battery_percentage < 0):battery_percentage = 0
     # Put the INA219 to sleep
     ina.sleep()
 

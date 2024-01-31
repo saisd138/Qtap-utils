@@ -39,3 +39,5 @@ then change and add these following parameters
         enable_uart=1           #add if not there
         arm_freq=600            #add
         core_freq=250           #add
+        dtoverlay=disable-bt    #add
+

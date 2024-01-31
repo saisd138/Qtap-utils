@@ -1,10 +1,6 @@
 from ina219 import INA219
 import time
 
-# Define the minimum and maximum voltage for the battery
-min_voltage = 3.0
-max_voltage = 4.1
-
 # Set the I2C address
 ina_address = 0x40
 
@@ -14,8 +10,15 @@ shunt_ohms = 0.1
 # Create an INA219 instance with the specified I2C address and shunt resistance
 ina = INA219(shunt_ohms, address=ina_address)
 
-# Configure INA219 to use the 16V shunt voltage range
-ina.configure(voltage_range=ina.RANGE_16V)
+# Retry the configuration up to 3 times
+for _ in range(3):
+    try:
+        # Configure INA219 to use the 16V shunt voltage range
+        ina.configure(voltage_range=ina.RANGE_16V)
+        break  # If successful, exit the loop
+    except OSError as e:
+        print(f"I2C communication error: {e}")
+        time.sleep(1)  # Wait for 1 second before retrying
 
 def get_battery_info():
     # Wake up the INA219
@@ -26,6 +29,7 @@ def get_battery_info():
 
     # Read the voltage from the INA219 sensor
     voltage = ina.voltage()
+
     # Read the current from the INA219 sensor
     current = ina.current()  # This value is in Amperes
 

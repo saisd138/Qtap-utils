@@ -1,9 +1,3 @@
-#sudo apt-get update
-#sudo apt-get install python3 python3-pip
-#sudo pip3 install nfcpy
-
-
-
 import nfc
 
 def on_connect(tag):
